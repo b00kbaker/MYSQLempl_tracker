@@ -1,0 +1,24 @@
+{
+  "name": "mysqlempl_tracker",
+  "version": "1.0.0",
+  "description": "Employee database with editing abilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b00kbaker/MYSQLempl_tracker.git"
+  },
+  "keywords": [
+    "employee",
+    "database",
+    "mysql"
+  ],
+  "author": "Caitlin Murphy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/b00kbaker/MYSQLempl_tracker/issues"
+  },
+  "homepage": "https://github.com/b00kbaker/MYSQLempl_tracker#readme"
+}
