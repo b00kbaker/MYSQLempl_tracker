@@ -3,8 +3,11 @@ CREATE database employ_DB;
 
 USE employ_DB;
 
+-- 'id' is the primary key
+-- 'role_id' , 'manager_id' , 'department_id' are all foreign keys *Need to dig into this*
+
 CREATE TABLE employee (
- id INT PRIMARY KEY,
+ id INT NOT NULL AUTO_INCREMENT,
  first_name VARCHAR(30),
  last_name VARCHAR(30),
  role_id INT,
@@ -12,13 +15,13 @@ CREATE TABLE employee (
 );
 
 CREATE TABLE department (
-  position INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(30) NULL,
   PRIMARY KEY (position)
 );
 
 CREATE TABLE job (
- id INT PRIMARY KEY,
+ id INT NOT NULL AUTO_INCREMENT,
  title VARCHAR(30),
  salary DECIMAL,
  department_id INT,
