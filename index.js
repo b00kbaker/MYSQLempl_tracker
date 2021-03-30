@@ -53,7 +53,7 @@ const startQA = () => {
       .then((answer) => {
         switch (answer.action) {
           case 'View all employees':
-            allSearch();
+            searchAll();
             break;
         }
         switch (answer.action) {
@@ -88,5 +88,51 @@ const startQA = () => {
         }
     })
 };
+
+
+const searchAll = () => {
+    inquirer
+    .prompt({
+      name: 'all',
+      type: 'input',
+      message: 'Select a name from the list below',
+    })
+    .then((answer) => {
+      const query = 'SELECT first_name last_name FROM employee WHERE ?';
+      connection.query(query, { artist: answer.artist }, (err, res) => {
+        res.forEach(({ position, song, year }) => {
+          console.log(
+            `Position: ${position} || Song: ${song} || Year: ${year}`
+          );
+        });
+        runSearch();
+      });
+    });
+};
+
+
+const employeeDepartment = () => {
+
+}
+
+const employeeRoles = () => {
+
+}
+
+const addEmployee = () => {
+
+}
+
+const removeEmployee = () => {
+
+}
+
+const updateRole = () => {
+
+}
+
+const newManager = () => {
+
+}
 
 
