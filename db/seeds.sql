@@ -1,4 +1,4 @@
-USE  employ_DB;
+USE employ_DB;
 
 insert into department (name) values 
 ("Financing"),

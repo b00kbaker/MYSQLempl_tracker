@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS employ_DB;
-CREATE database employ_DB;
+CREATE DATABASE employ_DB;
 
 USE employ_DB;
 

@@ -1,10 +1,13 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql');
+const table = require('console.table');
+
+
 
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'not3&Sun',
+    password: 'rootroot',
     database: 'employ_DB',
   });
   
@@ -45,9 +48,9 @@ const startQA = () => {
           'View employees by department',
           'View employees by roles',
           'Add a new employee',
-          'Remove an employee',
+          'Add a new department',
+          'Add a new role',
           'Update an employee role',
-          'Choose an employee to move under a new manager',
         ],
       })
       .then((answer) => {
@@ -72,18 +75,18 @@ const startQA = () => {
               break;
         }
         switch (answer.action) {
-            case 'Remove an employee':
-              removeEmployee();
+            case 'Add a new department':
+              addDepartment();
+              break;
+        }
+        switch (answer.action) {
+            case 'Add a new role':
+              addRole();
               break;
         }
         switch (answer.action) {
             case 'Update an employee role':
               updateRole();
-              break;
-        }
-        switch (answer.action) {
-            case 'Choose an employee to move under a new manager':
-              newManager();
               break;
         }
     })
@@ -105,7 +108,7 @@ const searchAll = () => {
             `Position: ${position} || Song: ${song} || Year: ${year}`
           );
         });
-        runSearch();
+        wrapUp();
       });
     });
 };
@@ -123,7 +126,11 @@ const addEmployee = () => {
 
 }
 
-const removeEmployee = () => {
+const addDepartment = () => {
+
+}
+
+const addRole = () => {
 
 }
 
@@ -131,8 +138,17 @@ const updateRole = () => {
 
 }
 
-const newManager = () => {
-
+const wrapUp = () => {
+    inquirer.prompt({
+        name: 'wrap',
+        type: 'choices',
+        message: 'Would you like to make another change?',
+        choices: [
+         'Yes',
+         'No',
+        ],
+      })
+    //   if 'yes' go back to function startQA but if 'no' send a "Your updates are complete and this application will close now" kind of messsage and close out
 }
 
 
