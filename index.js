@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql');
-const table = require('console.table');
+const table = require("console.table");
 
 
 
@@ -41,7 +41,7 @@ const connection = mysql.createConnection({
 const startQA = () => {
     inquirer.prompt({
         name: 'begin',
-        type: 'choices',
+        type: 'list',
         message: 'What would you like to do?',
         choices: [
           'View all employees',
@@ -93,25 +93,37 @@ const startQA = () => {
 };
 
 
-const searchAll = () => {
-    inquirer
-    .prompt({
-      name: 'all',
-      type: 'input',
-      message: 'Select a name from the list below',
-    })
-    .then((answer) => {
-      const query = 'SELECT first_name last_name FROM employee WHERE ?';
-      connection.query(query, { artist: answer.artist }, (err, res) => {
-        res.forEach(({ position, song, year }) => {
-          console.log(
-            `Position: ${position} || Song: ${song} || Year: ${year}`
-          );
-        });
-        wrapUp();
-      });
-    });
-};
+  
+
+// function searchAll() {
+// 	console.log("Employee Rota:\n");
+
+// 	var query = `SELECT e.id, e.first_name, e.last_name, j.title, d.name AS department, j.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
+//   FROM employee e
+//   LEFT JOIN job j
+// 	ON e.role_id = r.id
+//   LEFT JOIN department d
+//   ON d.id = j.department_id
+//   LEFT JOIN employee m
+// 	ON m.id = e.manager_id`;
+
+// 	connection.query(query, function (err, res) {
+// 		if (err) throw err;
+
+// 		console.table(res);
+		
+// 		startQA();
+// 	});
+// }
+          
+         
+function searchAll() {
+  connection.query("SELECT * FROM employee", function (err, data) {
+      console.table(data);
+      askQuestions();
+  })
+}
+
 
 
 const employeeDepartment = () => {
