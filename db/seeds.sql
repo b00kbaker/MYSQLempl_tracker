@@ -1,13 +1,13 @@
 USE employ_DB;
 
-insert into department (name) values 
+INSERT INTO department (name) VALUES
 ("Financing"),
 ("Engineering"),
 ("Sales"),
 ("Legal"),
 ;
 
-insert into role (title, salary, department_id) values
+INSERT INTO job (title, salary, department_id) VALUES
 ("Receptionist", 32000, 4),
 ("Senior Developer",80000,2),
 ("Junior Developer",55000,2),
@@ -19,7 +19,7 @@ insert into role (title, salary, department_id) values
 ("Senior Lawyer", 85000,4),
 ;
 
-insert into employee (first_name, last_name, role_id, manager_id) values
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES
 ("Alice", "Waterman", 20, 13),
 ("Jennifer","Fraser",11, null),
 ("Austin","Tabernash",1, null),

@@ -54,37 +54,37 @@ const startQA = () => {
         ],
       })
       .then((answer) => {
-        switch (answer.action) {
+        switch (answer.choice) {
           case 'View all employees':
             searchAll();
             break;
         }
-        switch (answer.action) {
+        switch (answer.choice) {
             case 'View employees by department':
               employeeDepartment();
               break;
         }
-        switch (answer.action) {
+        switch (answer.choice) {
             case 'View employees by roles':
               employeeRoles();
               break;
         }
-        switch (answer.action) {
+        switch (answer.choice) {
             case 'Add a new employee':
               addEmployee();
               break;
         }
-        switch (answer.action) {
+        switch (answer.choice) {
             case 'Add a new department':
               addDepartment();
               break;
         }
-        switch (answer.action) {
+        switch (answer.choice) {
             case 'Add a new role':
               addRole();
               break;
         }
-        switch (answer.action) {
+        switch (answer.choice) {
             case 'Update an employee role':
               updateRole();
               break;
@@ -93,35 +93,27 @@ const startQA = () => {
 };
 
 
-  
-
-// function searchAll() {
-// 	console.log("Employee Rota:\n");
-
-// 	var query = `SELECT e.id, e.first_name, e.last_name, j.title, d.name AS department, j.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
-//   FROM employee e
-//   LEFT JOIN job j
-// 	ON e.role_id = r.id
-//   LEFT JOIN department d
-//   ON d.id = j.department_id
-//   LEFT JOIN employee m
-// 	ON m.id = e.manager_id`;
-
-// 	connection.query(query, function (err, res) {
-// 		if (err) throw err;
-
-// 		console.table(res);
-		
-// 		startQA();
-// 	});
-// }
           
          
 function searchAll() {
-  connection.query("SELECT * FROM employee", function (err, data) {
-      console.table(data);
-      askQuestions();
-  })
+	console.log("Employee Rota:\n");
+
+	var query = `SELECT e.id, e.first_name, e.last_name, j.title, d.name AS department, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
+  FROM employee e
+  LEFT JOIN job j
+	ON e.role_id = j.id
+  LEFT JOIN department d
+  ON d.id = j.department_id
+  LEFT JOIN employee m
+	ON m.id = e.manager_id`;
+
+	connection.query(query, function (err, res) {
+		if (err) throw err;
+
+		console.table(res);
+
+		startQA();
+	});
 }
 
 
