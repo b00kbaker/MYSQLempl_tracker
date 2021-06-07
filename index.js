@@ -2,19 +2,6 @@ const inquirer = require('inquirer');
 const mysql = require('mysql');
 const table = require("console.table");
 
-
-
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'rootroot',
-    database: 'employ_DB',
-  });
-  
-  connection.connect((err) => {
-    if (err) throw err;
-    startQA();
-});
   
   
 
