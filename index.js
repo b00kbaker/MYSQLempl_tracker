@@ -1,33 +1,18 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql');
 const table = require("console.table");
-
+const db = require("./db");
   
-  
+startQA();
 
-// 1st round of questions: What would you like to do? [choice inquirer with up down keys]
-//  -View all employees? Throws list of first and last names
-    // -Would you like to add an employee?
-        // -First name? (input type)
-        // -Last name? (input type)
-        // -Added to which department? (input choice)
-        // -What role from (x) department? (input choice)
-        // -What salary amount? (input type)
-        // -Who will be their manager? (input choice)
-    // -Would you like to remove an employee? (list of full name)
-    // -Would you like to update an employee's role?
-        //  The employee is in which department?
-        // All names in (x) department?
-    // -Would you like to update an employee's overviewing manager?
-        // -The employee is in which department?
-        // All names in (x) department
-        // Choose employee then select manger
-//  -View all employees by departments? List the 4 departments
-//  -View all employees by roles? All roles from all departments
+function startQA() {
+  loadPrompts();
+}
 
-const startQA = () => {
-    inquirer.prompt({
-        name: 'begin',
+async function loadPrompts() {
+  const { choice } = await prompt([
+    {
+       name: 'begin',
         type: 'list',
         message: 'What would you like to do?',
         choices: [
@@ -39,7 +24,7 @@ const startQA = () => {
           'Add a new role',
           'Update an employee role',
         ],
-      })
+      }
       .then((answer) => {
         switch (answer.choice) {
           case 'View all employees':
@@ -76,8 +61,8 @@ const startQA = () => {
               updateRole();
               break;
         }
-    })
-};
+})
+,
 
 
           
@@ -102,6 +87,7 @@ function searchAll() {
 		startQA();
 	});
 }
+
 
 
 
