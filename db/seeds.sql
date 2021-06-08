@@ -1,4 +1,4 @@
-USE employ_DB;
+use employ;
 
 INSERT INTO department (name) VALUES
 ("Financing"),
@@ -19,7 +19,7 @@ INSERT INTO job (title, salary, department_id) VALUES
 ("Senior Lawyer", 85000,4),
 ;
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES
+INSERT INTO employee (first_name, last_name, job_id, manager_id) VALUES
 ("Alice", "Waterman", 20, 13),
 ("Jennifer","Fraser",11, null),
 ("Austin","Tabernash",1, null),

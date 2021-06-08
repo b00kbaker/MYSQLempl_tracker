@@ -69,6 +69,8 @@ async function loadPrompts() {
             break;
       }
 }),
+])}
+
 
 
 
@@ -80,7 +82,7 @@ async function searchAll() {
   console.table(allEmployees);
 
   loadPrompts();
-},
+}
 
 
 
@@ -107,7 +109,7 @@ async function employeeDepartment() {
   console.table(byDepartment);
   
   loadPrompts();
-},
+}
 
 async function employeeJobs() {
   const jobs = await db.findAllJobs();
@@ -117,7 +119,7 @@ async function employeeJobs() {
 
   loadPrompts();
 
-},
+}
 
 async function addEmployee() {
   const jobs = await db.findAllJobs();
@@ -168,31 +170,98 @@ async function addEmployee() {
   console.log(`Added new employee ${newEmployee.first_name} ${newEmployee.last_name} to the directory`);
 
   loadPrompts();
-},
-
-const addDepartment = () => {
-
 }
 
-const addRole = () => {
+async function addDepartment() {
+  const newDepartment = await prompt([
+    {
+      name: "name",
+      message: "Name of the new department"
+    }
+  ]);
 
+  await db.createNewDepartment(newDepartment);
+
+  console.log(`Added new department ${newDepartment.name} to the directory`);
+
+  loadPrompts();
 }
 
-const updateRole = () => {
+async function addJob() {
+  const allDepartments = await db.findAllDepartments();
 
+  const departmentTypes = allDepartments.map(({ id, name}) => ({
+    name: name,
+    value: id
+  }));
+
+  const newJob = await prompt([
+    {
+      name: "title",
+      message: "Name of the new job"
+    },
+    {
+      name: "salary",
+      message: "Salary of the new job"
+    },
+    {
+      type: "list",
+      name: "department_id",
+      message: "This new job will be in which department?",
+      choices: departmentTypes
+    }
+  ]);
+
+  await db.creatNewJob(newJob);
+
+  console.log(`Added new job: ${job.title} to the directory`);
+
+  loadPrompts();
 }
 
-const wrapUp = () => {
-    inquirer.prompt({
-        name: 'wrap',
-        type: 'choices',
-        message: 'Would you like to make another change?',
-        choices: [
-         'Yes',
-         'No',
-        ],
-      })
-    //   if 'yes' go back to function startQA but if 'no' send a "Your updates are complete and this application will close now" kind of messsage and close out
+async function updateJob() {
+ const allEmployees = await db.findAllEmployees();
+
+ const pickEmployee = allEmployees.map(({ id, first_name, last_name }) => ({
+   name: `${first_name} ${last_name}`,
+   value: id
+ }));
+
+ const { employeeId } = await prompt([
+   {
+     type: "list",
+     name: "employeeId",
+     message: "Which employee do you want to update their job type?",
+     choices: pickEmployee
+   }
+ ]);
+
+ const jobs = await db.findAllJobs();
+
+ const jobTypes = jobs.map(({ id, title }) => ({
+   name: title,
+   value: id
+ }));
+
+ const { jobId } = await prompt([
+   {
+     type: "list",
+     name: "jobId",
+     message: "What job is being assigned to the chosen employee?",
+     choices: jobTypes
+   }
+ ]);
+
+ await db.updateEmployeeJob(employeeId, jobId);
+
+ console.log("Employee's job type was updated in the directory");
+
+ loadPrompts();
+}
+
+function wrapUp() {
+ console.log("Thank you for using the Employee Directory");
+ process.exit();
 }
 
 

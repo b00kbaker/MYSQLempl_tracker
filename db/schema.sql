@@ -1,10 +1,8 @@
-DROP DATABASE IF EXISTS employ_DB;
-CREATE DATABASE employ_DB;
+DROP DATABASE IF EXISTS employ;
+CREATE DATABASE employ;
 
-USE employ_DB;
+USE employ;
 
--- 'id' is the primary key
--- 'role_id' , 'manager_id' , 'department_id' are all foreign keys *Need to dig into this*
 
 CREATE TABLE employee (
  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -27,8 +25,8 @@ CREATE TABLE job (
  INDEX department_ind (department_id),
 );
 
-SELECT * FROM employee;
-SELECT * FROM department;
-SELECT * FROM job;
+-- SELECT * FROM employee;
+-- SELECT * FROM department;
+-- SELECT * FROM job;
 
 
