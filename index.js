@@ -1,11 +1,12 @@
-const inquirer = require('inquirer');
+const { prompt } = require('inquirer');
 const mysql = require('mysql');
-const table = require("console.table");
+require("console.table");
 const db = require("./db");
   
 startQA();
 
 function startQA() {
+  console.log("Welcome to the Employee Directory!")
   loadPrompts();
 }
 
@@ -18,11 +19,12 @@ async function loadPrompts() {
         choices: [
           'View all employees',
           'View employees by department',
-          'View employees by roles',
+          'View employees by jobs',
           'Add a new employee',
           'Add a new department',
-          'Add a new role',
-          'Update an employee role',
+          'Add a new job',
+          'Update an employee job',
+          'Close the program'
         ],
       }
       .then((answer) => {
@@ -37,8 +39,8 @@ async function loadPrompts() {
               break;
         }
         switch (answer.choice) {
-            case 'View employees by roles':
-              employeeRoles();
+            case 'View employees by jobs':
+              employeeJobs();
               break;
         }
         switch (answer.choice) {
@@ -52,56 +54,121 @@ async function loadPrompts() {
               break;
         }
         switch (answer.choice) {
-            case 'Add a new role':
-              addRole();
+            case 'Add a new job':
+              addJob();
               break;
         }
         switch (answer.choice) {
-            case 'Update an employee role':
-              updateRole();
+            case 'Update an employee job':
+              updateJob();
               break;
         }
-})
-,
+        switch (answer.choice) {
+          case 'Close the program':
+            wrapUp();
+            break;
+      }
+}),
+
 
 
           
          
-function searchAll() {
-	console.log("Employee Rota:\n");
+async function searchAll() {
+  const allEmployees = await db.findAllEmployees();
+	console.log("\n");
+  console.table(allEmployees);
 
-	var query = `SELECT e.id, e.first_name, e.last_name, j.title, d.name AS department, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
-  FROM employee e
-  LEFT JOIN job j
-	ON e.role_id = j.id
-  LEFT JOIN department d
-  ON d.id = j.department_id
-  LEFT JOIN employee m
-	ON m.id = e.manager_id`;
-
-	connection.query(query, function (err, res) {
-		if (err) throw err;
-
-		console.table(res);
-
-		startQA();
-	});
-}
+  loadPrompts();
+},
 
 
 
 
-const employeeDepartment = () => {
+async function employeeDepartment() {
+ const allDepartments = await db.findAllDepartments();
+ const departmentTypes = departments.map(({ id, name }) => ({
+   name: name,
+   value: id
+ }));
 
-}
+ const { departmentId } = await prompt([
+   {
+     type: "list",
+     name: "departmentId",
+     message: "Choose a department to view its employees",
+     choices: departmentTypes
+   }
+ ]);
 
-const employeeRoles = () => {
+  const byDepartment = await db.findEmployeesByDepartment(departmentId);
 
-}
+  console.log("\n");
+  console.table(byDepartment);
+  
+  loadPrompts();
+},
 
-const addEmployee = () => {
+async function employeeJobs() {
+  const jobs = await db.findAllJobs();
 
-}
+  console.log("\n");
+  console.table(jobs);
+
+  loadPrompts();
+
+},
+
+async function addEmployee() {
+  const jobs = await db.findAllJobs();
+  const allEmployees = await db.findAllEmployees();
+  const newEmployee = await prompt([
+    {
+      name: "first_name",
+      message: "New employee's first name?"
+    },
+    {
+      name:"last_name",
+      message: "New employee's last name?"
+    }
+  ]);
+
+  const jobTypes = jobs.map(({ id, title }) => ({
+    name: title,
+    value: id
+  }));
+
+  const { jobId } = await prompt({
+    type: "list",
+    name: "jobId",
+    message: "What it the new employee's job?",
+    choices: jobChoices
+  });
+
+  newEmployee.job_id = jobId;
+
+  const assignManager = allEmployees.map(({ id, first_name, last_name }) => ({
+    name: `${first_name} ${last_name}`,
+    value: id
+  }));
+
+  assignManager.unshift({ name: "None", value: null });
+
+  const { managerId } = await prompt({
+    type: "list",
+    name: "managerId",
+    message: "Who is the new employee's manager?",
+    choices: assignManager
+  });
+
+  newEmployee.manager_id = managerId;
+
+  await db.createNewEmployee(newEmployee);
+
+  console.log(`Added new employee ${newEmployee.first_name} ${newEmployee.last_name} to the directory`);
+
+  loadPrompts();
+},
 
 const addDepartment = () => {
 
