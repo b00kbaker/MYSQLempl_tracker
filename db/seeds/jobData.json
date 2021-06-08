@@ -1,0 +1,38 @@
+[
+        {
+        "title": "Receptionist",
+        "salary": 32000,
+        "department_id": 4
+    },
+    {
+        "title": "Senior Developer",
+        "salary": 80000,
+        "department_id": 2
+    },
+    {
+        "title": "Junior Developer",
+        "salary": 60000,
+        "department_id": 2
+    },
+    {
+        "title": "Payroll Administrator",
+        "salary": 55000,
+        "department_id": 9
+    },
+    {
+        "title": "President of Sales",
+        "salary": 6000,
+        "department_id": 3
+    },
+    {
+        "title": "Project Accountant",
+        "salary": 8000,
+        "department_id": 1
+    },
+    {
+        "title": "Senior Lawyer",
+        "salary": 5000,
+        "department_id": 4
+    }
+    
+]

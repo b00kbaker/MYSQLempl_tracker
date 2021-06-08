@@ -1,10 +1,10 @@
-use employ_db;
+USE employ_db;
 
 INSERT INTO department (name) VALUES
 ("Financing"),
 ("Engineering"),
 ("Sales"),
-("Legal"),
+("Legal")
 ;
 
 INSERT INTO job (title, salary, department_id) VALUES
@@ -16,7 +16,7 @@ INSERT INTO job (title, salary, department_id) VALUES
 ("Project Accountant",80000,1),
 ("Senior Accountant",90000,1),
 ("Full Stack Developer",70000, 2),
-("Senior Lawyer", 85000,4),
+("Senior Lawyer", 85000,4)
 ;
 
 INSERT INTO employee (first_name, last_name, job_id, manager_id) VALUES
@@ -25,5 +25,5 @@ INSERT INTO employee (first_name, last_name, job_id, manager_id) VALUES
 ("Austin","Tabernash",1, null),
 ("Nathan","Sharp",17,5),
 ("Hazel","Wentworth",19,null),
-("Martin","Murphy", 8,4),
+("Martin","Murphy", 8,4)
 ;

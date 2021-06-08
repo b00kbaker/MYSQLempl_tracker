@@ -1,6 +1,4 @@
 const { prompt } = require('inquirer');
-const mysql = require('mysql');
-require("console.table");
 const db = require("./db");
   
 startQA();
