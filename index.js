@@ -141,7 +141,7 @@ async function addEmployee() {
     type: "list",
     name: "jobId",
     message: "What it the new employee's job?",
-    choices: jobChoices
+    choices: jobTypes
   });
 
   newEmployee.job_id = jobId;

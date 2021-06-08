@@ -1,86 +1,38 @@
 [
     {
-        "first_name": "john",
-        "last_name": "doe",
-        "role_id": 1,
-        "manager_id": 1
+        "first_name": "Alice",
+        "last_name": "Waterman",
+        "job_id": 20,
+        "manager_id": 13
     },
     {
-        "first_name": "sarah",
-        "last_name": "smith",
-        "role_id": 2,
-        "manager_id": 1
+        "first_name": "Jennifer",
+        "last_name": "Fraser",
+        "job_id": 11,
+        "manager_id": 13
     },
     {
-        "first_name": "jason",
-        "last_name": "green",
-        "role_id": 3,
-        "manager_id": 2
+        "first_name": "Austin",
+        "last_name": "Tabernash",
+        "job_id": 1,
+        "manager_id": 5
     },
     {
-        "first_name": "adam",
-        "last_name": "gray",
-        "role_id": 3,
-        "manager_id": 2
+        "first_name": "Nathan",
+        "last_name": "Sharp",
+        "job_id": 17,
+        "manager_id": 5
     },
     {
-        "first_name": "morgan",
-        "last_name": "wallen",
-        "role_id": 4,
-        "manager_id": 1
-    },
-    {
-        "first_name": "bernard",
-        "last_name": "lagat",
-        "role_id": 5,
+        "first_name": "Hazel",
+        "last_name": "Wentworth",
+        "job_id": 19,
         "manager_id": 4
     },
     {
-        "first_name": "matt",
-        "last_name": "centrowitz",
-        "role_id": 5,
+        "first_name": "Martin",
+        "last_name": "Murphy",
+        "job_id": 8,
         "manager_id": 4
-    },
-    {
-        "first_name": "lopez",
-        "last_name": "lomong",
-        "role_id": 5,
-        "manager_id": 4
-    },
-    {
-        "first_name": "drew",
-        "last_name": "hunter",
-        "role_id": 6,
-        "manager_id": 1
-    },
-    {
-        "first_name": "grant",
-        "last_name": "fisher",
-        "role_id": 7,
-        "manager_id": 6
-    },
-    {
-        "first_name": "sydney",
-        "last_name": "gidabuday",
-        "role_id": 7,
-        "manager_id": 6
-    },
-    {
-        "first_name": "jakob",
-        "last_name": "ingebrigtsen",
-        "role_id": 8,
-        "manager_id": 1
-    },
-    {
-        "first_name": "david",
-        "last_name": "rudisha",
-        "role_id": 9,
-        "manager_id": 8
-    },
-    {
-        "first_name": "mo",
-        "last_name": "farah",
-        "role_id": 13,
-        "manager_id": 8
-    }
+    }   
 ]
