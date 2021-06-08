@@ -13,69 +13,68 @@ function startQA() {
 async function loadPrompts() {
   const { choice } = await prompt([
     {
-       name: 'begin',
-        type: 'list',
-        message: 'What would you like to do?',
+       name: "choice",
+        type: "list",
+        message: "What would you like to do?",
         choices: [
-          'View all employees',
-          'View employees by department',
-          'View employees by jobs',
-          'Add a new employee',
-          'Add a new department',
-          'Add a new job',
-          'Update an employee job',
-          'Close the program'
-        ],
+          {
+            name:"View all employees",
+            value: "ALL_EMPLOYEES"
+          },
+          {
+            name:"View employees by department",
+            value: "EMPLOYEES_IN_DEPARTMENT"
+          },
+          {
+            name: "View employees by jobs",
+            value: "EMPLOYEES_BY_JOB"
+          },
+          {
+            name: "Add a new employee",
+            value: "NEW_EMPLOYEE"
+          },
+          {
+            name: "Add a new department",
+            value: "NEW_DEPARTMENT"
+          },
+          {
+            name: "Add a new job",
+            value: "NEW_JOB"
+          },
+          {
+            name: "Update an employee job",
+            value: "UPDATE_JOB"
+          },
+          {
+            name: "Close the program",
+            value: "CLOSE"
+          }
+        ]
       }
-      .then((answer) => {
-        switch (answer.choice) {
-          case 'View all employees':
-            searchAll();
-            break;
-        }
-        switch (answer.choice) {
-            case 'View employees by department':
-              employeeDepartment();
-              break;
-        }
-        switch (answer.choice) {
-            case 'View employees by jobs':
-              employeeJobs();
-              break;
-        }
-        switch (answer.choice) {
-            case 'Add a new employee':
-              addEmployee();
-              break;
-        }
-        switch (answer.choice) {
-            case 'Add a new department':
-              addDepartment();
-              break;
-        }
-        switch (answer.choice) {
-            case 'Add a new job':
-              addJob();
-              break;
-        }
-        switch (answer.choice) {
-            case 'Update an employee job':
-              updateJob();
-              break;
-        }
-        switch (answer.choice) {
-          case 'Close the program':
-            wrapUp();
-            break;
-      }
-}),
-])}
+]);
 
+// Switch case to route to proper function
 
-
-
-          
-         
+switch (choice) {
+  case "ALL_EMPLOYEES":
+    return searchAll();
+  case "EMPLOYEES_IN_DEPARTMENT":
+    return employeeDepartment();
+  case "EMPLOYEES_BY_JOB":
+    return employeeJobs();
+  case "NEW_EMPLOYEE":
+    return addEmployee();
+  case "NEW_DEPARTMENT":
+    return addDepartment();
+  case "NEW_JOB":
+    return addJob();
+  case "UPDATE_JOB":
+    return updateJob();
+  case "CLOSE":
+    return wrapUp();    
+ }
+}
+        
 async function searchAll() {
   const allEmployees = await db.findAllEmployees();
 	console.log("\n");
@@ -259,7 +258,7 @@ async function updateJob() {
  loadPrompts();
 }
 
-function wrapUp() {
+async function wrapUp() {
  console.log("Thank you for using the Employee Directory");
  process.exit();
 }

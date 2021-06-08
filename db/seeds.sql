@@ -1,4 +1,4 @@
-use employ;
+use employ_db;
 
 INSERT INTO department (name) VALUES
 ("Financing"),
