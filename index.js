@@ -1,5 +1,5 @@
 const { prompt } = require('inquirer');
-const db = require("./db");
+const db = require("./db/index");
   
 startQA();
 
@@ -86,7 +86,7 @@ async function searchAll() {
 
 async function employeeDepartment() {
  const allDepartments = await db.findAllDepartments();
- const departmentTypes = departments.map(({ id, name }) => ({
+ const departmentTypes = allDepartments.map(({ id, name }) => ({
    name: name,
    value: id
  }));
