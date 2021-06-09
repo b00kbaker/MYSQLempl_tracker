@@ -1,3 +1,4 @@
+const util = require("util");
 const mysql = require("mysql");
 require("dotenv").config();
 
@@ -9,9 +10,8 @@ const connection = mysql.createConnection({
   database: "employ_db"
 });
 
-connection.connect((err) => {
-  if (err) throw err;
-});
+connection.connect
+connection.query = util.promisify(connection.query);
 
 
 

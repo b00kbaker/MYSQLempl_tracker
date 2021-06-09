@@ -2,37 +2,32 @@
     {
         "first_name": "Alice",
         "last_name": "Waterman",
-        "job_id": 20,
-        "manager_id": 13
+        "job_id":1
+      
     },
     {
         "first_name": "Jennifer",
         "last_name": "Fraser",
-        "job_id": 11,
-        "manager_id": 13
+        "job_id": 3
     },
     {
         "first_name": "Austin",
         "last_name": "Tabernash",
-        "job_id": 1,
-        "manager_id": 5
+        "job_id": 3
     },
     {
         "first_name": "Nathan",
         "last_name": "Sharp",
-        "job_id": 17,
-        "manager_id": 5
+        "job_id": 4
     },
     {
         "first_name": "Hazel",
         "last_name": "Wentworth",
-        "job_id": 19,
-        "manager_id": 4
+        "job_id": 2
     },
     {
         "first_name": "Martin",
         "last_name": "Murphy",
-        "job_id": 8,
-        "manager_id": 4
+        "job_id": 1
     }   
 ]

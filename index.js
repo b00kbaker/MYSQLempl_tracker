@@ -76,7 +76,7 @@ switch (choice) {
 async function searchAll() {
   const allEmployees = await db.findAllEmployees();
 	console.log("\n");
-  console.table(allEmployees);
+  console.log(allEmployees);
 
   loadPrompts();
 }
@@ -85,8 +85,8 @@ async function searchAll() {
 
 
 async function employeeDepartment() {
- const allDepartments = await db.findAllDepartments();
- const departmentTypes = allDepartments.map(({ id, name }) => ({
+ const department = await db.findAllDepartments();
+ const departmentTypes = department.map(({ id, name }) => ({
    name: name,
    value: id
  }));
@@ -103,7 +103,7 @@ async function employeeDepartment() {
   const byDepartment = await db.findEmployeesByDepartment(departmentId);
 
   console.log("\n");
-  console.table(byDepartment);
+  console.log(byDepartment);
   
   loadPrompts();
 }
@@ -112,7 +112,8 @@ async function employeeJobs() {
   const jobs = await db.findAllJobs();
 
   console.log("\n");
-  console.table(jobs);
+  console.log
+  (jobs);
 
   loadPrompts();
 
@@ -256,7 +257,7 @@ async function updateJob() {
  loadPrompts();
 }
 
-async function wrapUp() {
+function wrapUp() {
  console.log("Thank you for using the Employee Directory");
  process.exit();
 }
